@@ -1,26 +1,67 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useContext } from 'react';
+import { useState } from 'react';
+import {Last} from './Last';
+import { OutorderProvider,OrderContext,order } from './providers/OutorderProvider';
+import Kind,{kindprops} from './Kind';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+interface testProps{
+    com:string,
+};
+
+export const Test:React.FC<testProps> = (props:testProps) =>{
+    return(
+        <div>
+            <p>test</p>
+            <p>{props.com}</p>
+        </div>
+    )
+}
+
+const App:React.FC = () => {
+    const [elarr, setElarr] = useState<Array<any>>(Array<any>);
+    const [dispel,setDisp] = useState<any>(<Kind 
+        push={(e)=>{pushEl(e)}}
+        shift={()=>{shiftEl()}}
+        pop={()=>{popEl()}}
+        />);
+
+    const pushEl = (els:Array<any>)=>{
+        let tmp = elarr;
+        for(let i = 0;i < els.length;i++){
+            tmp.push(els[i]);
+        }
+        setElarr(tmp);
+    }
+    const shiftEl = () =>{
+        let tmp = elarr;
+        let el:React.FC|Element|undefined;
+        el = tmp.shift();
+        if(typeof el === 'undefined'){
+            setDisp(<Last />);
+        }else{
+            setDisp(el);
+        }
+        setElarr(tmp);
+    }
+    const popEl = () =>{
+        let tmp = elarr;
+        let el:React.FC|Element|undefined;
+        el = tmp.pop();
+        if(typeof el === 'undefined'){
+            setDisp(<Last />);
+        }else{
+            setDisp(el);
+        }
+        setElarr(tmp);
+    }
+
+    return (
+        <div>
+            <OutorderProvider>
+                {dispel}
+            </OutorderProvider>
+        </div>
+    );
 }
 
 export default App;
