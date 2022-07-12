@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useState } from 'react';
 import {Last} from './Last';
-import { OutorderProvider,OrderContext,order } from './providers/OutorderProvider';
-import Kinds,{kindsprops} from './Kind';
+import { OutorderProvider } from './providers/OutorderProvider';
+import Kinds from './Kind';
 
 interface testProps{
     com:string,
