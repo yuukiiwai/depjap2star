@@ -4,6 +4,11 @@ body{
     height: 100vh;
 }
 
+.main {
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
 .line img{
     vertical-align: middle;
     display: inline-block;
