@@ -29,9 +29,9 @@
                 {"parent":{"str":"","jap":"そのまま"},"childlen":[]},
                 {"parent":{"str":"インホイップ","jap":"増量したホイップを飲み物内に入れる"},"childlen":[]}
             ]},
-            {"parent":{"str":"ノンホイップ","jap":"ホイップなし"},
-            "childlen":[]},
             {"parent":{"str":"ライトホイップ","jap":"ホイップ半分"},
+            "childlen":[]},
+            {"parent":{"str":"ノンホイップ","jap":"ホイップなし"},
             "childlen":[]}
         ],
         "cof":[]
