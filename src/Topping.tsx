@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { useState } from 'react';
+import { Card } from './Card';
 import {OrderContext} from './providers/OutorderProvider';
 
 interface toppingsprops{
@@ -33,9 +33,9 @@ const Topping:React.FC<toppingprops> = (props:toppingprops) =>{
         setOrder({
             menu:outorder.menu,
             size:outorder.size,
-            topping:outorder.topping + newtopping
+            topping:outorder.topping +" "+ newtopping
         });
-        if(childlen.length != 0){
+        if(childlen.length !== 0){
             props.push(
                 [<Toppings
                 kind={props.kind}
@@ -48,11 +48,10 @@ const Topping:React.FC<toppingprops> = (props:toppingprops) =>{
         props.pop();
     }
     return(
-        <div>
-            <p onClick={()=>{clk(props.topping.str,props.childlen)}}>
-                {props.topping.jap}
-            </p>
-        </div>
+        <Card
+        clk={()=>{clk(props.topping.str,props.childlen)}}
+        imgurl=""
+        text={props.topping.jap}/>
     );
 }
 
@@ -60,7 +59,7 @@ const Toppings:React.FC<toppingsprops> = (props:toppingsprops) => {
 
     return (
         <div>
-            <h3>{props.kind}のカスタマイズ</h3>
+            <h3>{"> "}{props.kind}のカスタマイズ</h3>
             {props.toppings.map((item,key)=>
                 <Topping 
                 key={key} 

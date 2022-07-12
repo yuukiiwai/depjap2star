@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { useState } from 'react';
+import { Card } from './Card';
 import {OrderContext} from './providers/OutorderProvider';
 import Data from './data/data.json';
 
@@ -25,11 +25,10 @@ const Size:React.FC<sizeprops> = (props:sizeprops)=>{
     }
 
     return(
-        <div>
-            <p onClick={()=>clk(props.str)}>
-                {props.jap}
-            </p>
-        </div>
+        <Card
+        clk={()=>clk(props.str)}
+        imgurl=""
+        text={props.jap}/>
     )
 }
 
@@ -37,7 +36,7 @@ export const Sizes:React.FC<sizesprops> = (props:sizesprops) => {
     const sizes = Data.size;
     return (
         <div>
-            <h3>サイズ</h3>
+            <h3>{"> "}サイズ</h3>
             {sizes.map((item,key)=>
                 <Size
                 key={key}

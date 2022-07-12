@@ -8,9 +8,11 @@ export const Last:React.FC = () => {
     return (
         <div>
             <h1>Result!</h1>
-            <p>{outorder.menu}</p>
-            <p>{outorder.topping}</p>
-            <p>{outorder.size}</p>
+            <div className='order'>
+                <p>{outorder.menu}</p>
+                <p>{outorder.topping}</p>
+                <p>{outorder.size}</p>
+            </div>
         </div>
     );
 }

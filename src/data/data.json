@@ -26,6 +26,7 @@
             "childlen":[]},
             {"parent":{"str":"エクストラホイップ","jap":"ホイップ2倍"},
             "childlen":[
+                {"parent":{"str":"","jap":"そのまま"},"childlen":[]},
                 {"parent":{"str":"インホイップ","jap":"増量したホイップを飲み物内に入れる"},"childlen":[]}
             ]},
             {"parent":{"str":"ノンホイップ","jap":"ホイップなし"},

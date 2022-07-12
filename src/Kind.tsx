@@ -4,6 +4,7 @@ import { Sizes } from "./Size";
 import Toppings,{topping} from "./Topping";
 import './css/style.css';
 import Data from './data/data.json';
+import { Card } from "./Card";
 
 export interface kindsprops{
     push:(e:Array<any>)=>void,
@@ -25,12 +26,11 @@ const Kind:React.FC<kindprops> = (props:kindprops)=>{
         props.shift();
     }
     return(
-        <div className="flex" onClick={()=>{clk()}}>
-            <figure className="listimage">
-                <img src="https://picsum.photos/id/237/960/540" alt="temp"/>
-                <p className="listtext">{props.kind}</p>
-            </figure>
-        </div>
+        <Card 
+        clk={clk}
+        imgurl=""
+        text={props.kind}
+        />
     );
 }
 
@@ -63,32 +63,37 @@ const Kinds:React.FC<kindsprops> = (props:kindsprops) =>{
             shift={props.shift}
             push={props.push}
             />
-            <p onClick={()=>{
-                props.push([
-                    <Menus
-                    kind="コーヒー"
-                    menus={coffeMenu}
-                    shift={props.shift} />,
-                    <Sizes
-                    shift={props.shift}
-                    />
-                ]);
-                props.shift();
-            }}>コーヒー</p>
-            <p onClick={()=>{
-                props.push([
-                    <Menus
-                    kind="エスプレッソ"
-                    menus={espressoMenu}
-                    shift={props.shift}
-                    />,
-                    <Sizes
-                    shift={props.shift}
-                    />
-                ]);
-                props.shift();
-            }}
-            >エスプレッソ</p>
+            <Kind 
+            ads={[
+                <Menus
+                kind="コーヒー"
+                menus={coffeMenu}
+                shift={props.shift} />,
+                <Sizes
+                shift={props.shift}
+                />
+            ]}
+            kind="コーヒー"
+            pop={props.pop}
+            shift={props.shift}
+            push={props.push}
+            />
+            <Kind 
+            ads={[
+                <Menus
+                kind="エスプレッソ"
+                menus={espressoMenu}
+                shift={props.shift}
+                />,
+                <Sizes
+                shift={props.shift}
+                />
+            ]}
+            kind="エスプレッソ"
+            pop={props.pop}
+            shift={props.shift}
+            push={props.push}
+            />
         </div>
     );
 }

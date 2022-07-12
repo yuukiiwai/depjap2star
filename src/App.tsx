@@ -56,7 +56,7 @@ const App:React.FC = () => {
     }
 
     return (
-        <div>
+        <div className='main'>
             <OutorderProvider>
                 {dispel}
             </OutorderProvider>
