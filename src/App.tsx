@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { useState } from 'react';
 import {Last} from './Last';
 import { OutorderProvider,OrderContext,order } from './providers/OutorderProvider';
-import Kind,{kindprops} from './Kind';
+import Kinds,{kindsprops} from './Kind';
 
 interface testProps{
     com:string,
@@ -19,7 +19,7 @@ export const Test:React.FC<testProps> = (props:testProps) =>{
 
 const App:React.FC = () => {
     const [elarr, setElarr] = useState<Array<any>>(Array<any>);
-    const [dispel,setDisp] = useState<any>(<Kind 
+    const [dispel,setDisp] = useState<any>(<Kinds 
         push={(e)=>{pushEl(e)}}
         shift={()=>{shiftEl()}}
         pop={()=>{popEl()}}
