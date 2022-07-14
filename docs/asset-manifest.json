@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/depjap2star/static/css/main.569c7bf4.css",
+    "main.js": "/depjap2star/static/js/main.89f60172.js",
+    "static/js/787.4dfcda37.chunk.js": "/depjap2star/static/js/787.4dfcda37.chunk.js",
+    "index.html": "/depjap2star/index.html",
+    "main.569c7bf4.css.map": "/depjap2star/static/css/main.569c7bf4.css.map",
+    "main.89f60172.js.map": "/depjap2star/static/js/main.89f60172.js.map",
+    "787.4dfcda37.chunk.js.map": "/depjap2star/static/js/787.4dfcda37.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.569c7bf4.css",
+    "static/js/main.89f60172.js"
+  ]
+}
