@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Card } from './Card';
-import {OrderContext} from './providers/OutorderProvider';
+import {OrderContext,step} from './providers/OutorderProvider';
 
 interface toppingsprops{
     kind:string,
@@ -28,12 +28,19 @@ interface toppingprops{
 }
 
 const Topping:React.FC<toppingprops> = (props:toppingprops) =>{
-    const {outorder,setOrder} = useContext(OrderContext);
-    const clk = (newtopping:string,childlen:topping[])=>{
+    const {outorder,setOrder,steps,setSteps} = useContext(OrderContext);
+    const clk = (childlen:topping[])=>{
+        // パンくずの処理
+        let tmpstep:Array<step> = steps;
+        const newstep:step = {step:"カスタマイズ",value:props.topping.jap}
+        tmpstep.push(newstep);
+        setSteps(tmpstep);
+
+        // オーダーの処理
         setOrder({
             menu:outorder.menu,
             size:outorder.size,
-            topping:outorder.topping +" "+ newtopping
+            topping:outorder.topping +" "+ props.topping.str
         });
         if(childlen.length !== 0){
             props.push(
@@ -49,7 +56,7 @@ const Topping:React.FC<toppingprops> = (props:toppingprops) =>{
     }
     return(
         <Card
-        clk={()=>{clk(props.topping.str,props.childlen)}}
+        clk={()=>{clk(props.childlen);}}
         imgurl=""
         text={props.topping.jap}/>
     );

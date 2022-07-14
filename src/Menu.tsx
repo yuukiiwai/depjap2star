@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Card } from './Card';
-import {OrderContext} from './providers/OutorderProvider';
+import {OrderContext, step} from './providers/OutorderProvider';
 
 interface menusprops{
     kind:string,
@@ -14,8 +14,15 @@ interface menuprops{
 }
 
 const Menu:React.FC<menuprops> = (props:menuprops) =>{
-    const {outorder,setOrder} = useContext(OrderContext);
+    const {outorder,setOrder,steps,setSteps} = useContext(OrderContext);
     const clk = (newmenu:string)=>{
+        // パンくずの処理
+        let tmpstep:Array<step> = steps;
+        const newstep:step = {step:"メニュー",value:newmenu}
+        tmpstep.push(newstep);
+        setSteps(tmpstep);
+
+        // オーダーの処理
         setOrder({
             menu:newmenu,
             size:outorder.size,

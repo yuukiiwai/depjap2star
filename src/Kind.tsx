@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import Menus from "./Menu";
 import { Sizes } from "./Size";
 import Toppings,{topping} from "./Topping";
 import './css/style.css';
 import Data from './data/data.json';
 import { Card } from "./Card";
+import { OrderContext, step } from "./providers/OutorderProvider";
 
 export interface kindsprops{
     push:(e:Array<any>)=>void,
@@ -21,7 +22,14 @@ interface kindprops{
 }
 
 const Kind:React.FC<kindprops> = (props:kindprops)=>{
+    const {steps,setSteps} = useContext(OrderContext);
+
     const clk=()=>{
+        let tmpstep:Array<step> = steps;
+        const newstep:step = {step:"種類",value:props.kind}
+        tmpstep.push(newstep);
+        setSteps(tmpstep);
+        
         props.push(props.ads);
         props.shift();
     }
@@ -41,7 +49,7 @@ const Kinds:React.FC<kindsprops> = (props:kindsprops) =>{
     const flpTopping:topping[] = Data.topping.flp;
     return(
         <div>
-            <h3>{">"} 種類</h3>
+            <h3>{"> "}種類</h3>
             <Kind
             ads={[
                 <Menus

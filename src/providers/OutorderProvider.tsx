@@ -11,28 +11,61 @@ export interface step{
     value:string
 }
 
+export interface stepsprops{
+    steps:Array<step>
+}
+
 export const OrderContext = createContext<any>({});
+
+const Steps:React.FC<stepsprops> = (props:stepsprops) =>{
+    return(
+        <table className="steptable">
+            <thead>
+                {props.steps.map((item,key)=>{
+                    if(item.step === ""){
+                        return(<br/>)
+                    }else{
+                        return(
+                            <>
+                            <th key={key}>&nbsp;&nbsp;{">"}&nbsp;</th>
+                            <th key={key}>{item.step}</th>
+                            </>
+                        )
+                    }
+                })
+                }
+            </thead>
+            <tbody>
+                <tr>
+                {props.steps.map((item,key)=>{
+                    if(item.value === ""){
+                        return(<br/>)
+                    }else{
+                        return(
+                            <>
+                            <th>&nbsp;&nbsp;</th>
+                            <td key={key}>{item.value}</td>
+                            </>
+                        )
+                    }
+                })
+                }
+                </tr>
+            </tbody>
+        </table>
+    );
+}
 
 export const OutorderProvider = (props:any)=>{
     const [outorder,setOrder] = useState<order>({menu:"",size:"",topping:""});
-    const [steps,setSteps] = useState<Array<step>>();
+    const [steps,setSteps] = useState<Array<step>>([{step:"",value:""}]);
     return(
         <OrderContext.Provider value={{outorder,setOrder,steps,setSteps}}>
-            {steps?.map((item,key)=>{
-                <Steps
-                    step = {item.step}
-                    value = {item.value}
-                />
-            })}
+            <Steps
+                steps={steps}
+            />
+            <br/>
             {props.children}
         </OrderContext.Provider>
     )
-}
-
-const Steps:React.FC<step> = (props:step) =>{
-    return(
-        <div>
-            {">"}{props.step}
-        </div>
-    );
 }

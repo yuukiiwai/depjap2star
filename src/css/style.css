@@ -30,3 +30,8 @@ body{
     border: solid 1px #555555;
     font-size: 3em;
 }
+
+.steptable {
+    text-align: center;
+    font-size: large;
+}

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Card } from './Card';
-import {OrderContext} from './providers/OutorderProvider';
+import {OrderContext, step} from './providers/OutorderProvider';
 import Data from './data/data.json';
 
 interface sizeprops{
@@ -14,19 +14,26 @@ interface sizesprops{
 }
 
 const Size:React.FC<sizeprops> = (props:sizeprops)=>{
-    const {outorder,setOrder} = useContext(OrderContext);
-    const clk = (newsize:string)=>{
+    const {outorder,setOrder,steps,setSteps} = useContext(OrderContext);
+    const clk = ()=>{
+        // パンくず処理
+        let tmpstep:Array<step> = steps;
+        const newstep:step = {step:"サイズ",value:props.jap}
+        tmpstep.push(newstep);
+        setSteps(tmpstep);
+
+        // オーダー処理
         setOrder({
             menu:outorder.menu,
             topping:outorder.topping,
-            size:newsize
+            size:props.str
         });
         props.shift();
     }
 
     return(
         <Card
-        clk={()=>clk(props.str)}
+        clk={()=>clk()}
         imgurl=""
         text={props.jap}/>
     )
